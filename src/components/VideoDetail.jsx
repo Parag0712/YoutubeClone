@@ -6,6 +6,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 import { Videos, Loader } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
+import VideoSideCard from "./VideoSideCard";
 
 const VideoDetail = () => {
   const [videoDetail, setVideoDetail] = useState(null);
@@ -25,7 +26,7 @@ const VideoDetail = () => {
   const { snippet: { title, channelId, channelTitle }, statistics: { viewCount, likeCount } } = videoDetail;
 
   return (
-    <Box minHeight="95vh">
+    <Box minHeight="95vh" >
       <Stack direction={{ xs: "column", md: "row" }}>
         <Box flex={1}>
           <Box sx={{ width: "100%", position: "sticky", top: "86px" }}>
@@ -51,8 +52,12 @@ const VideoDetail = () => {
             </Stack>
           </Box>
         </Box>
-        <Box px={2} py={{ md: 1, xs: 5 }} justifyContent="center" alignItems="center" >
-          <Videos videos={videos} direction="column" />
+        <Box px={2} py={{ md: 1, xs: 5 }} maxWidth={"300px"} justifyContent="center" alignItems="center" 
+  
+        sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }} // Hide on xs, sm, md and show on lg and up
+        
+        >
+          <VideoSideCard videos={videos} direction="column" />
         </Box>
       </Stack>
     </Box>
